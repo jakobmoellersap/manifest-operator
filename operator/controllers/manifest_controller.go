@@ -22,20 +22,18 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kyma-project/kyma-watcher/kcp/pkg/listener"
+	"github.com/kyma-project/runtime-watcher/kcp/pkg/listener"
 
 	"sigs.k8s.io/controller-runtime/pkg/ratelimiter"
+
+	"sigs.k8s.io/controller-runtime/pkg/event"
 
 	"github.com/kyma-project/manifest-operator/operator/internal/pkg/prepare"
 	"github.com/kyma-project/manifest-operator/operator/internal/pkg/util"
 	"github.com/kyma-project/manifest-operator/operator/pkg/ratelimit"
 	"github.com/kyma-project/manifest-operator/operator/pkg/types"
-	"sigs.k8s.io/controller-runtime/pkg/event"
 
 	"github.com/go-logr/logr"
-	"github.com/kyma-project/manifest-operator/operator/api/v1alpha1"
-	"github.com/kyma-project/manifest-operator/operator/pkg/labels"
-	"github.com/kyma-project/manifest-operator/operator/pkg/manifest"
 	"golang.org/x/time/rate"
 	"helm.sh/helm/v3/pkg/cli"
 	v1 "k8s.io/api/core/v1"
@@ -50,6 +48,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/source"
+
+	"github.com/kyma-project/manifest-operator/operator/api/v1alpha1"
+	"github.com/kyma-project/manifest-operator/operator/pkg/labels"
+	"github.com/kyma-project/manifest-operator/operator/pkg/manifest"
 )
 
 type RequeueIntervals struct {
