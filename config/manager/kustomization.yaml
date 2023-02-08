@@ -15,4 +15,4 @@ configMapGenerator:
 images:
 - name: controller
   newName: eu.gcr.io/kyma-project/module-manager
-  newTag: latest
+  newTag: v20230203-275f0c18
